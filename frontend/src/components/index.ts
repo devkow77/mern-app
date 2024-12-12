@@ -8,6 +8,7 @@ import HamburgerBtn from "./hamburger-btn";
 import { ThemeProvider } from "./theme-provider";
 import { ModeToggle } from "./mode-toggle";
 import AuthForm from "./auth-form";
+import FaqAccordion from "./faq-accordion";
 
 export {
   Container,
@@ -20,4 +21,5 @@ export {
   ThemeProvider,
   ModeToggle,
   AuthForm,
+  FaqAccordion,
 };

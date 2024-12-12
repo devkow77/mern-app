@@ -1,5 +1,4 @@
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -18,6 +17,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import axios from "axios";
+import { useToast } from "../hooks/use-toast";
+import { useNavigate } from "react-router";
 
 const checkEmailFormSchema = z.object({
   email: z.string().email({
@@ -25,14 +27,14 @@ const checkEmailFormSchema = z.object({
   }),
 });
 
-const signInFormSchema = z.object({
+const loginFormSchema = z.object({
   password: z.string().min(8, {
     message: "Hasło jest za krótkie!",
   }),
 });
 
 const createAccountFormSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(3, {
       message: "Nazwa użytkownika jest za krótka!",
@@ -54,6 +56,7 @@ const createAccountFormSchema = z.object({
     .max(9, {
       message: "Numer telefonu musi zawierać 9 cyfr!",
     }),
+  role: z.string(),
 });
 
 const AuthForm = () => {
@@ -72,7 +75,9 @@ const AuthForm = () => {
       {state === 1 && (
         <LoginForm state={state} setState={setState} email={email} />
       )}
-      {state == 2 && <CreateAccountForm state={state} />}
+      {state == 2 && (
+        <CreateAccountForm state={state} setState={setState} email={email} />
+      )}
     </DialogContent>
   );
 };
@@ -93,9 +98,27 @@ export const CheckUserExistForm = ({
     },
   });
 
-  const checkEmail = () => {
-    setEmail("kowalsky429@gmail.com");
-    setState(1);
+  const checkEmail = async (values: z.infer<typeof checkEmailFormSchema>) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/user/check`,
+        values,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (res.status !== 200) {
+        console.log(res);
+      }
+
+      setState(res.data);
+      setEmail(values.email);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -146,15 +169,41 @@ export const LoginForm = ({
   setState: (state: number) => void;
   email: string;
 }) => {
-  const signInForm = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
+  const loginForm = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
       password: "",
     },
   });
 
-  const signIn = () => {
-    setState(2);
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/user/login`,
+        {
+          email,
+          ...values,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      setState(0);
+      navigate("/profile");
+    } catch (err) {
+      toast({
+        title: "Błędne dane!",
+        description: "Podane hasło jest niepoprawne.",
+        variant: "destructive",
+      });
+      console.error(err);
+    }
   };
 
   return (
@@ -167,14 +216,14 @@ export const LoginForm = ({
             <span className="font-semibold">{email}</span>
           </DialogDescription>
         </DialogHeader>
-        <Form {...signInForm} key={state}>
+        <Form {...loginForm} key={state}>
           <form
-            onSubmit={signInForm.handleSubmit(signIn)}
+            onSubmit={loginForm.handleSubmit(loginUser)}
             className="space-y-8"
             name="signIn"
           >
             <FormField
-              control={signInForm.control}
+              control={loginForm.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
@@ -188,8 +237,7 @@ export const LoginForm = ({
             <Button
               type="submit"
               className="bg-sky-500 hover:bg-sky-700"
-              onClick={() => console.log(signInForm.getValues())}
-              disabled={!signInForm.formState.isValid}
+              disabled={!loginForm.formState.isValid}
             >
               Zaloguj się
             </Button>
@@ -200,21 +248,62 @@ export const LoginForm = ({
   );
 };
 
-export const CreateAccountForm = ({ state }: { state: number }) => {
+export const CreateAccountForm = ({
+  state,
+  setState,
+  email,
+}: {
+  state: number;
+  setState: (state: number) => void;
+  email: string;
+}) => {
   const createAccountForm = useForm<z.infer<typeof createAccountFormSchema>>({
     resolver: zodResolver(createAccountFormSchema),
     defaultValues: {
-      username: "",
-      email: "",
+      name: "",
+      email: email,
       password: "",
       phoneNumber: "",
+      role: "USER",
     },
   });
 
-  const createAccount = () => {};
+  const { toast } = useToast();
+
+  const createAccount = async (values: z.infer<typeof loginFormSchema>) => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/user/create`,
+        {
+          email,
+          ...values,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      toast({
+        title: "Pomyślnie utworzono nowego użytkownika!",
+        description: "Zaloguj się, aby wygodnie rezerwować wizyty.",
+        variant: "success",
+      });
+      createAccountForm.reset();
+      setState(1);
+    } catch (err) {
+      toast({
+        title: "Nazwa użytkownika albo numer telefonu",
+        description: "Spróbuj ponownie!",
+        variant: "destructive",
+      });
+      console.error(err);
+    }
+  };
 
   return (
-    <Dialog>
+    <>
       <DialogContent>
         <DialogHeader className="flex flex-col items-center justify-center">
           <DialogTitle className="text-2xl">Utworz konto</DialogTitle>
@@ -242,7 +331,7 @@ export const CreateAccountForm = ({ state }: { state: number }) => {
             />
             <FormField
               control={createAccountForm.control}
-              name="username"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -286,7 +375,7 @@ export const CreateAccountForm = ({ state }: { state: number }) => {
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </>
   );
 };
 

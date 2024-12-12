@@ -62,3 +62,14 @@ export const links: Link[] = [
     href: "/contact",
   },
 ];
+
+// Faq
+export const faqLinks: string[] = [
+  "O nas",
+  "Regulamin",
+  "Polityka prywatności",
+  "Kontakt",
+  "Informacje prawne",
+  "Projekty Unijne",
+  "Bezpieczeństwo",
+];

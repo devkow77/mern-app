@@ -1,9 +1,11 @@
 import { Avatar, AvatarImage } from "../components/ui/avatar";
 import { Dialog, DialogTrigger } from "../components/ui/dialog";
 import { AuthForm } from "../components/index";
+import { UserContext } from "../context/user-context";
+import { useContext } from "react";
 
 const Profile = () => {
-  const active: boolean = false;
+  const { ready, user } = useContext(UserContext);
 
   return (
     <Dialog>
@@ -11,7 +13,7 @@ const Profile = () => {
         <Avatar>
           <AvatarImage
             src={
-              active
+              ready
                 ? "/profile-default-avatar-active.jpg"
                 : "/profile-default-avatar-unactive.jpg"
             }
@@ -19,7 +21,7 @@ const Profile = () => {
           />
         </Avatar>
         <h2 className="text-sm font-semibold">
-          {active ? "Kacper Kowalski" : "Nie zalogowano"}
+          {ready ? user?.name : "Kliknij, aby zalogować"}
         </h2>
       </DialogTrigger>
       <AuthForm />

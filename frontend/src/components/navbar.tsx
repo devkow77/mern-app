@@ -5,6 +5,8 @@ import { HamburgerBtn, Profile } from "./index";
 const Navbar = () => {
   const desktop = useMediaQuery("(min-width: 1024px)");
 
+  // const distanceY = window.scrollY;
+
   return (
     <nav className="flex items-center justify-between">
       <Link to="/" className="font-semibold">

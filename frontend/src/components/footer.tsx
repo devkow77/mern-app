@@ -30,7 +30,7 @@ const Footer = () => {
               miejsca.
             </p>
           </div>
-          <div className="flex items-center gap-4 text-2xl lg:block lg:space-y-4">
+          <div className="flex items-center gap-4 text-2xl lg:block lg:space-y-5">
             <a
               href="https://www.instagram.com"
               target="_blank"

@@ -54,9 +54,7 @@ router.post('/login', checkSchema(loginUser), checkDataValidation, async (req, r
 				id: findUser._id,
 			},
 			process.env.JWT_SECRET,
-			{
-				expiresIn: '1d',
-			},
+			{},
 			(err, token) => {
 				if (err) throw err;
 				res.cookie('token', token, {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Container } from "../components/index";
 import { useState, useEffect } from "react";
 import { Specialist, Post } from "../lib/utils";
