@@ -4,7 +4,7 @@ import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 py-8 text-white">
+    <footer className="bg-zinc-800 py-8 text-white dark:bg-zinc-900">
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-6">
           <ul className="flex flex-wrap items-center gap-4 text-sm lg:gap-8">
@@ -12,7 +12,7 @@ const Footer = () => {
               <a
                 href={href}
                 key={index}
-                className="font-semibold duration-200 hover:text-yellow-500 hover:underline"
+                className="font-semibold duration-200 hover:text-sky-500 hover:underline"
               >
                 <li>{name}</li>
               </a>
@@ -34,21 +34,21 @@ const Footer = () => {
             <a
               href="https://www.instagram.com"
               target="_blank"
-              className="block duration-200 hover:text-yellow-500"
+              className="block duration-200 hover:text-sky-500"
             >
               <FaInstagram />
             </a>
             <a
               href="https://www.facebook.com"
               target="_blank"
-              className="block duration-200 hover:text-yellow-500"
+              className="block duration-200 hover:text-sky-500"
             >
               <FaFacebookF />
             </a>
             <a
               href="https://www.twitter.com"
               target="_blank"
-              className="block duration-200 hover:text-yellow-500"
+              className="block duration-200 hover:text-sky-500"
             >
               <FaTwitter />
             </a>

@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const Header = () => {
   return (
-    <header className="relative h-[600px] w-full text-white">
+    <header className="relative mb-16 h-[600px] w-full text-white">
       <div className="absolute z-10 h-full w-full bg-black/40" />
       <video
         autoPlay
@@ -16,7 +16,7 @@ const Header = () => {
       >
         <source src="/header.mp4" type="video/mp4" />
       </video>
-      <Container className="relative z-10 flex h-full flex-col justify-between py-6">
+      <Container className="relative z-10 h-full">
         <Navbar />
         <Content />
         <ServiceList />
@@ -27,12 +27,12 @@ const Header = () => {
 
 export const Content = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
       <div className="w-full space-y-4 text-center lg:space-y-6">
         <ReactTyped
           strings={typedText}
-          typeSpeed={60}
-          backDelay={1500}
+          typeSpeed={40}
+          backDelay={2500}
           backSpeed={5}
           loop
           className="text-2xl font-bold md:text-3xl lg:text-5xl"
@@ -57,7 +57,10 @@ export const Content = () => {
               />
             </svg>
           </div>
-          <Input placeholder="Szukaj usług lub biznesów" />
+          <Input
+            placeholder="Szukaj usług lub biznesów"
+            className="dark:bg-white dark:text-black"
+          />
         </div>
       </div>
     </div>
@@ -66,13 +69,13 @@ export const Content = () => {
 
 export const ServiceList = () => {
   return (
-    <section>
+    <section className="absolute bottom-6 w-full">
       <ul className="flex items-center gap-8 overflow-x-scroll whitespace-nowrap text-sm font-semibold lg:justify-center lg:gap-12 lg:overflow-x-hidden">
         {services.length > 0 &&
           services.map((service: string, index: number) => (
             <Link
               to="/"
-              className="duration-200 hover:text-yellow-500 hover:underline"
+              className="duration-200 hover:text-sky-500 hover:underline"
               key={index}
             >
               {service}

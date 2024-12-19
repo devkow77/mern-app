@@ -71,7 +71,9 @@ router.post('/login', checkSchema(loginUser), checkDataValidation, async (req, r
 router.get('/profile', (req, res) => {
 	const { token } = req.cookies;
 
-	if (!token) throw new Error('No token authorization!');
+	if (!token) {
+		return res.json(null);
+	}
 
 	jwt.verify(token, process.env.JWT_SECRET, {}, async (err, userData) => {
 		if (err) throw err;
@@ -80,8 +82,8 @@ router.get('/profile', (req, res) => {
 	});
 });
 
-router.post('/logout', (req, res) => {
-	res.cookie('token', '');
+router.get('/logout', (req, res) => {
+	res.cookie('token', '').json(true);
 });
 
 export default router;

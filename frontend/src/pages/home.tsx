@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Container } from "../components/index";
+import { Container, Header } from "../components/index";
 import { useState, useEffect } from "react";
 import { Specialist, Post } from "../lib/utils";
 import {
@@ -18,7 +18,8 @@ const hygraph = new GraphQLClient(
 
 const Home = () => {
   return (
-    <main className="py-8 dark:bg-zinc-900 dark:text-white">
+    <main className="dark:bg-zinc-900 dark:text-white">
+      <Header />
       <Services />
       <Content />
       <Specialists />

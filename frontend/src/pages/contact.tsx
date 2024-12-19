@@ -1,4 +1,4 @@
-import { Container } from "../components/index";
+import { Container, Header } from "../components/index";
 import { useState } from "react";
 import { faqLinks } from "../lib/utils";
 
@@ -6,32 +6,31 @@ const Contact = () => {
   const [page, setPage] = useState<number>(1);
 
   return (
-    <main className="relative lg:py-16">
-      <Container>
-        <div className="justify-between lg:flex">
-          <aside className="top-0 z-10 h-full border-r lg:sticky lg:w-1/4">
-            <ul>
-              {faqLinks.map((link: string, index: number) => (
-                <li
-                  onClick={() => setPage(index + 1)}
-                  key={index}
-                  className={`${page === index + 1 ? "bg-yellow-500 text-white" : ""} ${index === faqLinks.length - 1 ? "border-none" : ""} cursor-pointer border-b p-6 font-semibold`}
-                >
-                  {link}
-                </li>
-              ))}
-            </ul>
-          </aside>
-          <article className="lg:w-3/4 lg:px-8">
-            {page === 1 && <My />}
-            {page == 2 && <Regulamin />}
-            {page == 3 && <PolitykaPrywatnosci />}
-            {page == 4 && <Kontakt />}
-            {page == 5 && <InformacjePrawne />}
-            {page == 6 && <ProjektyUnijne />}
-            {page == 7 && <Bezpieczenstwo />}
-          </article>
-        </div>
+    <main>
+      <Header />
+      <Container className="justify-between lg:flex lg:py-12">
+        <aside className="top-0 h-full border-r lg:sticky lg:w-1/4">
+          <ul>
+            {faqLinks.map((link: string, index: number) => (
+              <li
+                onClick={() => setPage(index + 1)}
+                key={index}
+                className={`${page === index + 1 ? "bg-sky-500 text-white" : ""} ${index === faqLinks.length - 1 ? "border-none" : ""} cursor-pointer border-b p-6 font-semibold`}
+              >
+                {link}
+              </li>
+            ))}
+          </ul>
+        </aside>
+        <article className="lg:w-3/4 lg:px-8">
+          {page === 1 && <My />}
+          {page == 2 && <Regulamin />}
+          {page == 3 && <PolitykaPrywatnosci />}
+          {page == 4 && <Kontakt />}
+          {page == 5 && <InformacjePrawne />}
+          {page == 6 && <ProjektyUnijne />}
+          {page == 7 && <Bezpieczenstwo />}
+        </article>
       </Container>
     </main>
   );
@@ -116,7 +115,7 @@ const My = () => {
           pod adresem e-mail:
           <a
             href="mailto:kontakt@przykladowafirma.pl"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             booking@gmail.com
           </a>
@@ -364,7 +363,7 @@ const PolitykaPrywatnosci = () => {
           się z nami, wysyłając odpowiednią prośbę na adres e-mail:
           <a
             href="mailto:kontakt@przykladowafirma.pl"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             kontakt@przykladowafirma.pl
           </a>
@@ -392,7 +391,7 @@ const PolitykaPrywatnosci = () => {
           prosimy o kontakt na adres e-mail:
           <a
             href="mailto:kontakt@przykladowafirma.pl"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             kontakt@przykladowafirma.pl
           </a>
@@ -443,7 +442,7 @@ const InformacjePrawne = () => {
           danych, znajdują się w naszej{" "}
           <a
             href="/polityka-prywatnosci"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             Polityce Prywatności
           </a>
@@ -506,7 +505,7 @@ const InformacjePrawne = () => {
           prawnych, prosimy o kontakt z nami za pośrednictwem e-maila:{" "}
           <a
             href="mailto:kontakt@przykladowafirma.pl"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             kontakt@przykladowafirma.pl
           </a>
@@ -622,7 +621,7 @@ const ProjektyUnijne = () => {
           Skontaktuj się z nami pod adresem e-mail:{" "}
           <a
             href="mailto:projekty@przykladowafirma.pl"
-            className="text-byellow-500 hover:underline"
+            className="text-sky-500 hover:underline"
           >
             projekty@przykladowafirma.pl
           </a>
@@ -735,10 +734,7 @@ const Bezpieczenstwo = () => {
         <ul className="space-y-2">
           <li>
             <strong>Telefon:</strong>{" "}
-            <a
-              href="tel:+48000000000"
-              className="text-byellow-500 hover:underline"
-            >
+            <a href="tel:+48000000000" className="text-sky-500 hover:underline">
               +48 000 000 000
             </a>
           </li>
@@ -746,7 +742,7 @@ const Bezpieczenstwo = () => {
             <strong>E-mail:</strong>{" "}
             <a
               href="mailto:bezpieczenstwo@przykladowafirma.pl"
-              className="text-byellow-500 hover:underline"
+              className="text-sky-500 hover:underline"
             >
               bezpieczenstwo@przykladowafirma.pl
             </a>

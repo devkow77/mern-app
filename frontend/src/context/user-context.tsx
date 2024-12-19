@@ -11,12 +11,14 @@ interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
   ready: boolean;
+  setReady: (ready: boolean) => void;
 }
 
 export const UserContext = createContext<UserContextType>({
   user: null,
   setUser: () => {},
   ready: false,
+  setReady: () => {},
 });
 
 interface Props {
@@ -32,14 +34,14 @@ export const UserContextProvider = ({ children }: Props) => {
       axios
         .get(`${import.meta.env.VITE_BASE_URL}/api/user/profile`)
         .then(({ data }) => {
-          setUser(data);
           setReady(true);
+          setUser(data);
         });
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, ready }}>
+    <UserContext.Provider value={{ user, setUser, ready, setReady }}>
       {children}
     </UserContext.Provider>
   );

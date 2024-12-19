@@ -208,42 +208,40 @@ export const LoginForm = ({
 
   return (
     <>
-      <DialogContent>
-        <DialogHeader className="flex flex-col items-center justify-center">
-          <DialogTitle className="text-2xl">Witamy ponownie</DialogTitle>
-          <DialogDescription>
-            Wpisz haslo i zaloguj sie jako{" "}
-            <span className="font-semibold">{email}</span>
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...loginForm} key={state}>
-          <form
-            onSubmit={loginForm.handleSubmit(loginUser)}
-            className="space-y-8"
-            name="signIn"
+      <DialogHeader className="flex flex-col items-center justify-center">
+        <DialogTitle className="text-2xl">Witamy ponownie</DialogTitle>
+        <DialogDescription>
+          Wpisz haslo i zaloguj sie jako{" "}
+          <span className="font-semibold">{email}</span>
+        </DialogDescription>
+      </DialogHeader>
+      <Form {...loginForm} key={state}>
+        <form
+          onSubmit={loginForm.handleSubmit(loginUser)}
+          className="space-y-8"
+          name="signIn"
+        >
+          <FormField
+            control={loginForm.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Haslo" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type="submit"
+            className="bg-sky-500 hover:bg-sky-700"
+            disabled={!loginForm.formState.isValid}
           >
-            <FormField
-              control={loginForm.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Haslo" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type="submit"
-              className="bg-sky-500 hover:bg-sky-700"
-              disabled={!loginForm.formState.isValid}
-            >
-              Zaloguj się
-            </Button>
-          </form>
-        </Form>
-      </DialogContent>
+            Zaloguj się
+          </Button>
+        </form>
+      </Form>
     </>
   );
 };
@@ -304,77 +302,75 @@ export const CreateAccountForm = ({
 
   return (
     <>
-      <DialogContent>
-        <DialogHeader className="flex flex-col items-center justify-center">
-          <DialogTitle className="text-2xl">Utworz konto</DialogTitle>
-          <DialogDescription>
-            Wpisz email i haslo aby utworzyc konto
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...createAccountForm} key={state}>
-          <form
-            onSubmit={createAccountForm.handleSubmit(createAccount)}
-            className="space-y-8"
-            name="createAccount"
+      <DialogHeader className="flex flex-col items-center justify-center">
+        <DialogTitle className="text-2xl">Utworz konto</DialogTitle>
+        <DialogDescription>
+          Wpisz email i haslo aby utworzyc konto
+        </DialogDescription>
+      </DialogHeader>
+      <Form {...createAccountForm} key={state}>
+        <form
+          onSubmit={createAccountForm.handleSubmit(createAccount)}
+          className="space-y-8"
+          name="createAccount"
+        >
+          <FormField
+            control={createAccountForm.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="E-mail" {...field} disabled />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={createAccountForm.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Nazwa uzytkownika" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={createAccountForm.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Hasło" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={createAccountForm.control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Numer telefonu" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type="submit"
+            className="bg-sky-500 hover:bg-sky-700"
+            disabled={!createAccountForm.formState.isValid}
           >
-            <FormField
-              control={createAccountForm.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="E-mail" {...field} disabled />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createAccountForm.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Nazwa uzytkownika" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createAccountForm.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Hasło" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createAccountForm.control}
-              name="phoneNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Numer telefonu" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type="submit"
-              className="bg-sky-500 hover:bg-sky-700"
-              disabled={!createAccountForm.formState.isValid}
-            >
-              Utwórz konto
-            </Button>
-          </form>
-        </Form>
-      </DialogContent>
+            Utwórz konto
+          </Button>
+        </form>
+      </Form>
     </>
   );
 };

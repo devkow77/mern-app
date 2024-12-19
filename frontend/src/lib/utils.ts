@@ -25,6 +25,27 @@ export interface Post {
     html: string;
   };
   createdAt: string;
+  createdBy: {
+    name: string;
+    picture: string;
+  };
+  author: {
+    slug: string;
+    name: string;
+    image: {
+      url: string;
+    };
+    description: string;
+  };
+}
+
+export interface Author {
+  slug: string;
+  name: string;
+  image: {
+    url: string;
+  };
+  description: string;
 }
 
 // Header
@@ -40,6 +61,7 @@ export const services: string[] = [
 ];
 
 export const typedText: string[] = [
+  "Świąteczne promocje czekają",
   "Zarezerwuj czas dla siebie",
   "Podkreśl swoje piękno",
   "Odważ się na zmiany",
@@ -60,6 +82,10 @@ export const links: Link[] = [
   {
     name: "Kontakt",
     href: "/contact",
+  },
+  {
+    name: "Autorzy Blogów",
+    href: "/blog/authors",
   },
 ];
 

@@ -50,7 +50,7 @@ const itemMotion = {
 const MobileMenu = () => {
   return (
     <motion.section
-      className="fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center bg-black/90 md:hidden"
+      className="fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center bg-black/90 lg:hidden"
       variants={menuMotion}
       initial="hidden"
       animate="visible"
