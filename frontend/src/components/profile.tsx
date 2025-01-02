@@ -51,7 +51,7 @@ const Profile = () => {
         {profile && (
           <div className="flex items-center gap-2">
             <Link
-              to={"/profile"}
+              to={"/account"}
               className="rounded-lg border-2 border-green-500 bg-transparent p-2 duration-200 hover:bg-green-500"
             >
               <svg

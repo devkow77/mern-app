@@ -84,7 +84,7 @@ export const BlogContent = () => {
 
   return (
     <article>
-      <Container>
+      <Container className="py-6">
         <PostContent post={post} />
         <SimiliarPosts similiarPosts={similiarPosts} />
       </Container>
@@ -94,7 +94,7 @@ export const BlogContent = () => {
 
 const PostContent = ({ post }: { post: Post | null }) => {
   return (
-    <div className="lg:mb-24 lg:flex lg:justify-between">
+    <div className="mb-8 flex flex-col justify-between gap-4 lg:mb-16 lg:flex-row">
       <section className="top-[120px] h-full space-y-4 lg:sticky lg:w-2/5">
         <img
           src={post?.image.url}
@@ -102,8 +102,8 @@ const PostContent = ({ post }: { post: Post | null }) => {
           className="relative aspect-video rounded-2xl object-cover object-center"
         />
         <div className="space-y-2">
-          <h2 className="text-2xl font-extrabold">{post?.title}</h2>
-          <h3 className="font-semibold">
+          <h2 className="text-xl font-extrabold lg:text-2xl">{post?.title}</h2>
+          <h3 className="text-sm font-semibold lg:text-base">
             Post upublikowano: 📆{" "}
             {new Date(post?.createdAt as string).toLocaleDateString("pl-PL", {
               year: "numeric",
@@ -115,7 +115,7 @@ const PostContent = ({ post }: { post: Post | null }) => {
           </h3>
           <Link
             to={`/blog/authors/${post?.author.slug}`}
-            className="flex cursor-pointer items-center gap-2 font-semibold underline duration-200 hover:text-sky-500"
+            className="flex cursor-pointer items-center gap-2 text-sm font-semibold underline duration-200 hover:text-sky-500 lg:text-base"
           >
             <div className="relative h-9 w-9 rounded-full">
               <img
@@ -129,7 +129,7 @@ const PostContent = ({ post }: { post: Post | null }) => {
         </div>
       </section>
       <section
-        className="lg:w-3/5 lg:px-8"
+        className="text-sm leading-6 lg:w-3/5 lg:px-8 lg:text-base"
         dangerouslySetInnerHTML={{ __html: post?.content.html as string }}
       />
     </div>

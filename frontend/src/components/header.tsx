@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const Header = () => {
   return (
-    <header className="relative mb-16 h-[600px] w-full text-white">
+    <header className="relative h-[600px] w-full text-white">
       <div className="absolute z-10 h-full w-full bg-black/40" />
       <video
         autoPlay
@@ -28,7 +28,7 @@ const Header = () => {
 export const Content = () => {
   return (
     <div className="absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-      <div className="w-full space-y-4 text-center lg:space-y-6">
+      <div className="w-full space-y-2 px-6 text-center lg:space-y-6">
         <ReactTyped
           strings={typedText}
           typeSpeed={40}

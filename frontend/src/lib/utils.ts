@@ -7,6 +7,24 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // interfaces
+export interface Work {
+  name: string;
+  price: number;
+}
+export interface Service {
+  name: string;
+  address: string;
+  phoneNumber: number;
+  photos: string[];
+  category: string;
+  works: Work[];
+}
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export interface Link {
   name: string;
   href: string;

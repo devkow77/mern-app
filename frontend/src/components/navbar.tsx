@@ -8,7 +8,7 @@ const Navbar = () => {
   const [active, setActive] = useState<boolean>(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 500) {
+    if (window.scrollY > 150) {
       setActive(true);
     } else {
       setActive(false);
