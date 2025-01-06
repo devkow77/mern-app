@@ -8,7 +8,9 @@ type Props = {
 
 const Container = ({ children, className }: Props) => {
   return (
-    <div className={twMerge("mx-auto w-full max-w-7xl px-4", className)}>
+    <div
+      className={twMerge("mx-auto w-full max-w-7xl px-4 sm:px-6", className)}
+    >
       {children}
     </div>
   );

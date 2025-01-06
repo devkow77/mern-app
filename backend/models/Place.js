@@ -1,33 +1,19 @@
 import mongoose from 'mongoose';
 
 const placeSchema = new mongoose.Schema({
-	owner: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
-	},
-	name: {
-		type: String,
-		required: true,
-	},
-	address: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	photos: {
-		type: [String],
-		required: true,
-	},
-	description: {
-		type: String,
-		required: true,
-	},
-	workingHours: [String],
-	facilities: [String],
-	services: [String],
+	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+	title: String,
+	address: String,
+	photos: [String],
+	description: String,
+	perks: [String],
+	extraInfo: String,
+	checkIn: Number,
+	checkOut: Number,
+	maxGuests: Number,
 	price: Number,
 });
 
-const Place = new mongoose.model('Place', placeSchema);
+const Place = mongoose.model('Place', placeSchema);
 
 export default Place;

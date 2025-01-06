@@ -1,11 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import { User } from "../lib/utils";
 
 interface UserContextType {
   user: User | null;
@@ -32,7 +27,7 @@ export const UserContextProvider = ({ children }: Props) => {
   useEffect(() => {
     if (!user) {
       axios
-        .get(`${import.meta.env.VITE_BASE_URL}/api/user/profile`)
+        .get(`${import.meta.env.VITE_BASE_URL}/api/users/account`)
         .then(({ data }) => {
           setReady(true);
           setUser(data);

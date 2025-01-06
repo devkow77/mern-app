@@ -1,10 +1,9 @@
-import { Container, FaqAccordion, Header } from "../components/index";
+import { Container, FaqAccordion } from "../components/index";
 
 const Faq = () => {
   return (
-    <main>
-      <Header />
-      <Container className="space-y-4 lg:py-16">
+    <main className="py-8 md:py-16">
+      <Container className="space-y-4 md:space-y-8">
         <h2 className="text-xl font-semibold lg:text-3xl">Faq</h2>
         <p className="text-sm leading-6 lg:text-base lg:leading-8">
           Cieszymy się, że jesteś zainteresowany naszymi usługami! Wiemy, że

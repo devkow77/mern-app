@@ -7,6 +7,25 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // interfaces
+export interface Place {
+  name: string;
+  title: string;
+  address: string;
+  photos: string[];
+  description: string;
+  perks: string[];
+  extraInfo: string;
+  checkIn: number;
+  checkOut: number;
+  maxGuests: number;
+  price: number;
+}
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export interface Link {
   name: string;
   href: string;

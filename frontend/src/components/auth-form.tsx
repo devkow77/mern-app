@@ -101,7 +101,7 @@ export const CheckUserExistForm = ({
   const checkEmail = async (values: z.infer<typeof checkEmailFormSchema>) => {
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/user/check`,
+        `${import.meta.env.VITE_BASE_URL}/api/users/check`,
         values,
         {
           headers: {
@@ -182,7 +182,7 @@ export const LoginForm = ({
   const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/user/login`,
+        `${import.meta.env.VITE_BASE_URL}/api/users/login`,
         {
           email,
           ...values,
@@ -195,7 +195,7 @@ export const LoginForm = ({
       );
 
       setState(0);
-      navigate("/profile");
+      navigate("/account");
     } catch (err) {
       toast({
         title: "Błędne dane!",
@@ -271,7 +271,7 @@ export const CreateAccountForm = ({
   const createAccount = async (values: z.infer<typeof loginFormSchema>) => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/user/create`,
+        `${import.meta.env.VITE_BASE_URL}/api/users/create`,
         {
           email,
           ...values,
@@ -289,7 +289,7 @@ export const CreateAccountForm = ({
         variant: "success",
       });
       createAccountForm.reset();
-      setState(1);
+      setState(2);
     } catch (err) {
       toast({
         title: "Nazwa użytkownika albo numer telefonu",

@@ -1,4 +1,4 @@
-import { Container, Header } from "../components/index";
+import { Container } from "../components/index";
 import { GraphQLClient } from "graphql-request";
 import { Author } from "../lib/utils";
 import { useState, useEffect } from "react";
@@ -23,7 +23,6 @@ const query = `
 const BlogAuthors = () => {
   return (
     <main>
-      <Header />
       <Content />
     </main>
   );

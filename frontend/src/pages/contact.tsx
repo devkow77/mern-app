@@ -1,21 +1,21 @@
-import { Container, Header } from "../components/index";
+import { Container, GoogleMap, ContactForm } from "../components/index";
 import { useState } from "react";
 import { faqLinks } from "../lib/utils";
+import { Link } from "react-router";
 
 const Contact = () => {
   const [page, setPage] = useState<number>(1);
 
   return (
     <main>
-      <Header />
-      <Container className="justify-between lg:flex lg:py-12">
+      <Container className="flex flex-col justify-between gap-8 py-8 lg:flex-row">
         <aside className="top-0 h-full border-r lg:sticky lg:w-1/4">
           <ul>
             {faqLinks.map((link: string, index: number) => (
               <li
                 onClick={() => setPage(index + 1)}
                 key={index}
-                className={`${page === index + 1 ? "bg-sky-500 text-white" : ""} ${index === faqLinks.length - 1 ? "border-none" : ""} cursor-pointer border-b p-6 font-semibold`}
+                className={`${page === index + 1 ? "bg-sky-500 text-white" : ""} ${index === faqLinks.length - 1 ? "border-none" : ""} cursor-pointer border-b p-4 font-semibold lg:p-6`}
               >
                 {link}
               </li>
@@ -38,10 +38,10 @@ const Contact = () => {
 
 const My = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">O NAS</h2>
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">O NAS</h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Wstęp</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">1. Wstęp</h3>
         <p>
           1.1. Witamy na stronie Przykładowej Firmy! Jesteśmy dynamicznie
           rozwijającą się organizacją, która stawia na innowacyjność, jakość i
@@ -54,18 +54,16 @@ const My = () => {
           odpowiadają na potrzeby współczesnego rynku.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">2. Nasza misja</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">2. Nasza misja</h3>
         <p>
           Naszym celem jest dostarczanie rozwiązań, które zmieniają rynek.
           Chcemy oferować produkty, które mają realny wpływ na życie naszych
           klientów i partnerów.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">3. Nasze wartości</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">3. Nasze wartości</h3>
         <ul>
           <li>
             <strong>Innowacyjność:</strong> Stawiamy na nowoczesne technologie,
@@ -85,9 +83,8 @@ const My = () => {
           </li>
         </ul>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">4. Historia firmy</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">4. Historia firmy</h3>
         <p>
           Przykładowa Firma została założona w 2010 roku przez grupę pasjonatów
           z różnych branż. Od samego początku naszą filozofią była chęć
@@ -95,9 +92,10 @@ const My = () => {
           klientów.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">5. Dlaczego warto nas wybrać?</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          5. Dlaczego warto nas wybrać?
+        </h3>
         <p>Oferujemy:</p>
         <ul>
           <li>Profesjonalne doradztwo i wsparcie.</li>
@@ -106,9 +104,8 @@ const My = () => {
           <li>Bezpieczeństwo i niezawodność naszych usług.</li>
         </ul>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">6. Kontakt z nami</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">6. Kontakt z nami</h3>
         <p>
           Jeśli masz pytania lub chcesz dowiedzieć się więcej o naszej ofercie,
           skontaktuj się z nami poprzez formularz kontaktowy lub bezpośrednio
@@ -128,12 +125,12 @@ const My = () => {
 
 const Regulamin = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">
         REGULAMIN APLIKACJI BOOKING DLA KLIENTÓW
       </h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Wstęp </h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">1. Wstęp </h3>
         <p>
           1.1. Witryna internetowa "Booking" jest udostępniana przez Przykładową
           Firmę, z siedzibą w Przykładowym Mieście, ul. Przykładowa 1.
@@ -148,7 +145,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           2. Rejestracja i konto użytkownika
         </h3>
         <p>
@@ -167,7 +164,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           3. Korzystanie z treści i materiałów na Stronie{" "}
         </h3>
         <p>
@@ -182,7 +179,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold"> 4. Odpowiedzialność</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4"> 4. Odpowiedzialność</h3>
         <p>
           4.1. Strona jest dostępna "tak jak jest", a Przykładowa Firma nie
           ponosi odpowiedzialności za ewentualne błędy, awarie, utratę danych
@@ -200,7 +197,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold">5. Polityka prywatności </h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">5. Polityka prywatności </h3>
         <p>
           5.1. Przykładowa Firma zobowiązuje się do ochrony prywatności
           użytkowników Strony. Szczegóły dotyczące przetwarzania danych
@@ -214,7 +211,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold">6. Zmiany w regulaminie </h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">6. Zmiany w regulaminie </h3>
         <p>
           6.1. Przykładowa Firma zastrzega sobie prawo do zmiany niniejszego
           regulaminu w dowolnym czasie. Zmiany wchodzą w życie w momencie ich
@@ -227,7 +224,7 @@ const Regulamin = () => {
         </p>
       </div>
       <div>
-        <h3 className="mb-4 font-semibold">7. Postanowienia końcowe</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">7. Postanowienia końcowe</h3>
         <p>
           7.1. Regulamin obowiązuje od dnia jego publikacji na Stronie.
           Korzystając z Strony, użytkownik potwierdza, że zapoznał się z treścią
@@ -252,11 +249,10 @@ const Regulamin = () => {
 
 const PolitykaPrywatnosci = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">Polityka Prywatności</h2>
-
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">Polityka Prywatności</h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Wstęp</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">1. Wstęp</h3>
         <p>
           1.1. Niniejsza Polityka Prywatności określa zasady przetwarzania i
           ochrony danych osobowych użytkowników naszej strony internetowej oraz
@@ -268,9 +264,10 @@ const PolitykaPrywatnosci = () => {
           Strony.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">2. Rodzaje zbieranych danych</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          2. Rodzaje zbieranych danych
+        </h3>
         <p>
           2.1. Podczas korzystania ze Strony możemy zbierać dane osobowe, takie
           jak:
@@ -285,9 +282,10 @@ const PolitykaPrywatnosci = () => {
           </li>
         </ul>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">3. Cele przetwarzania danych</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          3. Cele przetwarzania danych
+        </h3>
         <p>3.1. Zebrane dane osobowe będą wykorzystywane w celu:</p>
         <ul>
           <li>
@@ -306,7 +304,7 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">4. Udostępnianie danych</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">4. Udostępnianie danych</h3>
         <p>
           4.1. Przykładowa Firma nie udostępnia danych osobowych użytkowników
           osobom trzecim, chyba że:
@@ -322,7 +320,7 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">5. Cookies</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">5. Cookies</h3>
         <p>
           5.1. Strona korzysta z plików cookies w celu zapewnienia prawidłowego
           działania witryny, analizy ruchu oraz personalizacji treści.
@@ -335,7 +333,7 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">6. Bezpieczeństwo danych</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">6. Bezpieczeństwo danych</h3>
         <p>
           6.1. Przykładowa Firma stosuje odpowiednie środki techniczne i
           organizacyjne w celu ochrony danych osobowych przed nieautoryzowanym
@@ -348,7 +346,7 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">7. Prawa użytkowników</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">7. Prawa użytkowników</h3>
         <p>7.1. Użytkownicy mają prawo do:</p>
         <ul>
           <li>Dostępu do swoich danych osobowych</li>
@@ -372,7 +370,9 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">8. Zmiany w Polityce Prywatności</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          8. Zmiany w Polityce Prywatności
+        </h3>
         <p>
           8.1. Przykładowa Firma zastrzega sobie prawo do wprowadzenia zmian w
           Polityce Prywatności. Zmiany wchodzą w życie w momencie ich
@@ -385,7 +385,7 @@ const PolitykaPrywatnosci = () => {
       </div>
 
       <div>
-        <h3 className="mb-4 font-semibold">9. Kontakt</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">9. Kontakt</h3>
         <p>
           9.1. W razie jakichkolwiek pytań dotyczących Polityki Prywatności
           prosimy o kontakt na adres e-mail:
@@ -403,16 +403,40 @@ const PolitykaPrywatnosci = () => {
 };
 
 const Kontakt = () => {
-  return <section></section>;
+  return (
+    <section>
+      <Container className="md:py-6">
+        <h2 className="text-2xl font-black md:text-3xl xl:text-4xl">
+          KONTAKT <br /> <span className="text-sky-500">FORM</span>
+        </h2>
+        <p className="mt-2 text-sm leading-6 lg:text-base lg:leading-8">
+          Jeżeli masz jakiekolwiek pytania lub ważne informacje, skontaktuj się
+          z nami używając formularza kontaktowego poniżej.
+        </p>
+        <div className="my-6 md:flex md:flex-row-reverse md:items-center md:gap-6">
+          <GoogleMap />
+          <ContactForm />
+        </div>
+        <div className="text-sm leading-6 opacity-80 lg:text-base lg:leading-8">
+          <p className="">
+            Chciałbyś sprawdzić często zadawane pytania przed zawiadomienie
+            siebie z nami?
+          </p>
+          <Link to="/faq">Sprawdź Faq</Link>
+        </div>
+      </Container>
+    </section>
+  );
 };
 
 const InformacjePrawne = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">Informacje Prawne</h2>
-
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">Informacje Prawne</h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Własność intelektualna</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          1. Własność intelektualna
+        </h3>
         <p>
           1.1. Wszystkie treści znajdujące się na stronie internetowej
           "Przykładowa Firma" (w tym teksty, obrazy, logo, grafiki, materiały
@@ -427,9 +451,8 @@ const InformacjePrawne = () => {
           praw autorskich.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">2. Ochrona prywatności</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">2. Ochrona prywatności</h3>
         <p>
           2.1. Przykładowa Firma szanuje prywatność swoich użytkowników i
           zapewnia, że wszelkie dane osobowe są zbierane zgodnie z
@@ -449,9 +472,8 @@ const InformacjePrawne = () => {
           .
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           3. Ograniczenie odpowiedzialności
         </h3>
         <p>
@@ -467,9 +489,10 @@ const InformacjePrawne = () => {
           wolna od błędów.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">4. Zmiany w informacji prawnej</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          4. Zmiany w informacji prawnej
+        </h3>
         <p>
           4.1. Przykładowa Firma zastrzega sobie prawo do wprowadzania zmian w
           niniejszych informacjach prawnych. Zmiany wchodzą w życie w momencie
@@ -481,9 +504,8 @@ const InformacjePrawne = () => {
           przepisy prawa.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           5. Prawo właściwe i rozstrzyganie sporów
         </h3>
         <p>
@@ -497,9 +519,8 @@ const InformacjePrawne = () => {
           sąd właściwy dla siedziby Przykładowej Firmy.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">6. Kontakt</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">6. Kontakt</h3>
         <p>
           6.1. W przypadku jakichkolwiek pytań dotyczących powyższych informacji
           prawnych, prosimy o kontakt z nami za pośrednictwem e-maila:{" "}
@@ -518,11 +539,10 @@ const InformacjePrawne = () => {
 
 const ProjektyUnijne = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">Projekty Unijne</h2>
-
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">Projekty Unijne</h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Wprowadzenie</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">1. Wprowadzenie</h3>
         <p>
           Nasza firma aktywnie bierze udział w różnych projektach finansowanych
           z funduszy unijnych. Projekty te mają na celu wspieranie
@@ -531,9 +551,8 @@ const ProjektyUnijne = () => {
           uczestniczymy lub które realizujemy.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           2. Projekt 1: Rozwój nowych technologii
         </h3>
         <p>2.1. Tytuł projektu: "Innowacyjne rozwiązania w branży IT"</p>
@@ -551,9 +570,8 @@ const ProjektyUnijne = () => {
         </p>
         <p>2.4. Czas trwania: 01.01.2023 - 31.12.2024</p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           3. Projekt 2: Zrównoważony rozwój
         </h3>
         <p>3.1. Tytuł projektu: "Eko-Innowacje w przemyśle"</p>
@@ -569,9 +587,8 @@ const ProjektyUnijne = () => {
         </p>
         <p>3.4. Czas trwania: 01.06.2022 - 31.05.2025</p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           4. Projekt 3: Edukacja i rozwój kompetencji
         </h3>
         <p>4.1. Tytuł projektu: "Edukacja cyfrowa dla przyszłości"</p>
@@ -588,9 +605,8 @@ const ProjektyUnijne = () => {
         </p>
         <p>4.4. Czas trwania: 01.09.2023 - 31.08.2026</p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           5. Korzyści z uczestnictwa w projektach unijnych
         </h3>
         <ul className="list-disc pl-6">
@@ -606,9 +622,8 @@ const ProjektyUnijne = () => {
           <li>Dostęp do unikalnych źródeł finansowania i wsparcia.</li>
         </ul>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           6. Jak aplikować do projektów unijnych?
         </h3>
         <p>
@@ -634,11 +649,12 @@ const ProjektyUnijne = () => {
 
 const Bezpieczenstwo = () => {
   return (
-    <section className="lg:space-y-6">
-      <h2 className="mb-8 text-3xl font-bold">Bezpieczeństwo</h2>
-
+    <section className="space-y-4 leading-7 lg:space-y-6">
+      <h2 className="mb-4 text-3xl font-bold lg:mb-8">Bezpieczeństwo</h2>
       <div>
-        <h3 className="mb-4 font-semibold">1. Ochrona danych osobowych</h3>
+        <h3 className="mb-2 font-semibold lg:mb-4">
+          1. Ochrona danych osobowych
+        </h3>
         <p>
           1.1. Przykładowa Firma dokłada wszelkich starań, aby zapewnić
           bezpieczeństwo danych osobowych swoich użytkowników. Wszystkie dane
@@ -653,9 +669,8 @@ const Bezpieczenstwo = () => {
           dostępem, utratą, zniszczeniem lub uszkodzeniem.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           2. Bezpieczeństwo transakcji online
         </h3>
         <p>
@@ -670,9 +685,8 @@ const Bezpieczenstwo = () => {
           bezpieczeństwa, zapewniając pełną ochronę transakcji.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           3. Zabezpieczenia przed cyberzagrożeniami
         </h3>
         <p>
@@ -687,9 +701,8 @@ const Bezpieczenstwo = () => {
           przed nieuprawnionym dostępem do ich danych.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           4. Zabezpieczenie konta użytkownika
         </h3>
         <p>
@@ -704,9 +717,8 @@ const Bezpieczenstwo = () => {
           obsługą klienta.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           5. Środki zapobiegawcze przeciwko oszustwom
         </h3>
         <p>
@@ -721,9 +733,8 @@ const Bezpieczenstwo = () => {
           platformy.
         </p>
       </div>
-
       <div>
-        <h3 className="mb-4 font-semibold">
+        <h3 className="mb-2 font-semibold lg:mb-4">
           6. Kontakt w sprawach bezpieczeństwa
         </h3>
         <p>

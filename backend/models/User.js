@@ -24,11 +24,6 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		match: [phoneNumberRegex, 'Invalid phone number'],
 	},
-	role: {
-		type: String,
-		enum: ['ADMIN', 'USER'],
-		default: 'USER',
-	},
 });
 
 const User = new mongoose.model('User', userSchema);

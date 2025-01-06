@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 
 const router = Router();
 
+// sprawdzanie czy uzytkownik istnieje
 router.post('/check', checkSchema(checkEmail), checkDataValidation, async (req, res) => {
 	const { email } = req.data;
 
@@ -21,6 +22,7 @@ router.post('/check', checkSchema(checkEmail), checkDataValidation, async (req, 
 	}
 });
 
+// stworzenie nowego uzytkownika
 router.post('/create', checkSchema(createUser), checkDataValidation, async (req, res) => {
 	const { name, email, password, phoneNumber, role } = req.data;
 
@@ -39,6 +41,7 @@ router.post('/create', checkSchema(createUser), checkDataValidation, async (req,
 	}
 });
 
+// logowanie
 router.post('/login', checkSchema(loginUser), checkDataValidation, async (req, res) => {
 	const { email, password } = req.data;
 
@@ -68,7 +71,8 @@ router.post('/login', checkSchema(loginUser), checkDataValidation, async (req, r
 	}
 });
 
-router.get('/profile', (req, res) => {
+// przegladanie profilu
+router.get('/account', (req, res) => {
 	const { token } = req.cookies;
 
 	if (!token) {
@@ -82,8 +86,19 @@ router.get('/profile', (req, res) => {
 	});
 });
 
+// wylogowanie
 router.get('/logout', (req, res) => {
 	res.cookie('token', '').json(true);
 });
+
+// pobierz dane zalogowanego uzytkownika
+export const getUserFromToken = (req) => {
+	return new Promise((resolve, reject) => {
+		jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+			if (err) throw err;
+			resolve(userData);
+		});
+	});
+};
 
 export default router;

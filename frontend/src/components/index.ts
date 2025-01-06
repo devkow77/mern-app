@@ -9,6 +9,11 @@ import { ThemeProvider } from "./theme-provider";
 import { ModeToggle } from "./mode-toggle";
 import AuthForm from "./auth-form";
 import FaqAccordion from "./faq-accordion";
+import ServiceForm from "./service-form";
+import GoogleMap from "./google-map";
+import ContactForm from "./contact-form";
+import ImagesUploader from "./images-uploader";
+import Perks from "./perks";
 
 export {
   Container,
@@ -22,4 +27,9 @@ export {
   ModeToggle,
   AuthForm,
   FaqAccordion,
+  ServiceForm,
+  GoogleMap,
+  ContactForm,
+  ImagesUploader,
+  Perks,
 };

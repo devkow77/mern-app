@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Container, Header } from "../components/index";
+import { Container } from "../components/index";
 import { useState, useEffect } from "react";
 import { Specialist, Post } from "../lib/utils";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "../components/ui/carousel";
 import { Link } from "react-router";
 import { GraphQLClient } from "graphql-request";
@@ -18,8 +16,7 @@ const hygraph = new GraphQLClient(
 
 const Home = () => {
   return (
-    <main className="dark:bg-zinc-900 dark:text-white">
-      <Header />
+    <main className="space-y-12 py-8 dark:bg-zinc-900 dark:text-white md:py-16">
       <Services />
       <Content />
       <Specialists />
@@ -51,27 +48,33 @@ export const Services = () => {
   return (
     <article>
       <Container>
-        <h2 className="mb-4 font-semibold lg:mb-6 lg:text-xl">
+        <h2 className="mb-4 font-semibold md:mb-6 md:text-xl">
           Niedawno dodane usługi
         </h2>
-        <Carousel>
-          <CarouselContent className="flex lg:gap-6">
-            {specialists.length > 0 &&
-              specialists.map((specialist: Specialist, index: number) => (
-                <CarouselItem
-                  key={index}
-                  className="flex aspect-video items-center justify-center rounded-xl bg-black/30 lg:basis-1/3"
-                >
-                  <div className="text-center">
-                    <h3 className="text-lg font-semibold">{specialist.name}</h3>
-                    <p className="text-sm">{specialist.address}</p>
-                  </div>
-                </CarouselItem>
-              ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div>
+          {specialists.length > 0 ? (
+            <Carousel>
+              <CarouselContent className="flex gap-6">
+                {specialists.length > 0 &&
+                  specialists.map((specialist: Specialist, index: number) => (
+                    <CarouselItem
+                      key={index}
+                      className="flex aspect-video items-center justify-center rounded-xl bg-black/30 sm:basis-1/2 md:basis-1/3"
+                    >
+                      <div className="text-center">
+                        <h3 className="font-semibold md:text-lg">
+                          {specialist.name}
+                        </h3>
+                        <p className="text-sm">{specialist.address}</p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+              </CarouselContent>
+            </Carousel>
+          ) : (
+            <h3 className="md:text-lg">Aktualnie brak usługodawców</h3>
+          )}
+        </div>
       </Container>
     </article>
   );
@@ -79,7 +82,7 @@ export const Services = () => {
 
 export const Content = () => {
   return (
-    <article className="py-8 lg:py-16">
+    <article>
       <Container className="space-y-16 lg:space-y-32">
         <section className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="space-y-6 md:w-1/2 lg:space-y-16">
@@ -158,9 +161,9 @@ export const Content = () => {
 
 export const Specialists = () => {
   return (
-    <article className="lg:mb-12">
+    <article className="mb-6 lg:mb-12">
       <Container>
-        <section className="space-y-8 lg:space-y-16">
+        <section className="space-y-4 lg:space-y-8">
           <h2 className="text-center text-2xl font-semibold lg:text-4xl">
             Znajdź specjalistę na Booking według miasta
           </h2>
@@ -199,52 +202,59 @@ export const Blog = () => {
   }, []);
 
   return (
-    <article className="lg:py-8">
-      <Container>
-        <section className="space-y-4 lg:space-y-8">
-          <h2 className="text-xl font-semibold lg:text-3xl">
-            Polecane dla Ciebie
-          </h2>
-          <Carousel>
-            <CarouselContent>
-              {posts.length > 0 &&
-                posts.map(
-                  ({ slug, title, createdAt, image: { url } }: Post) => (
-                    <CarouselItem
-                      key={slug}
-                      className="relative h-[300px] w-full rounded-xl md:h-[250px] lg:basis-1/3"
-                    >
-                      <Link to={`/blog/${slug}`}>
-                        <div className="relative h-2/3 w-full rounded-xl rounded-b-none">
-                          <img
-                            src={url}
-                            alt={title}
-                            className="absolute h-full w-full rounded-xl rounded-b-none object-cover object-center"
-                          />
-                        </div>
-                        <div className="flex h-1/3 flex-col justify-center rounded-xl rounded-t-none px-4">
-                          <h3 className="text-md font-semibold">{title}</h3>
-                          <p className="text-sm opacity-80">
-                            Data utworzenia:{" "}
-                            <span className="font-semibold">
-                              {new Date(createdAt).toLocaleDateString("pl-PL", {
-                                year: "numeric",
-                                month: "long",
-                                day: "2-digit",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </span>
-                          </p>
-                        </div>
-                      </Link>
-                    </CarouselItem>
-                  ),
-                )}
-              ;
-            </CarouselContent>
-          </Carousel>
-        </section>
+    <article>
+      <Container className="space-y-6">
+        <h2 className="text-2xl font-semibold lg:text-3xl">
+          Polecane dla Ciebie
+        </h2>
+        <div>
+          {posts.length > 0 ? (
+            <Carousel>
+              <CarouselContent>
+                {posts.length > 0 &&
+                  posts.map(
+                    ({ slug, title, createdAt, image: { url } }: Post) => (
+                      <CarouselItem
+                        key={slug}
+                        className="relative h-[300px] w-full rounded-xl sm:basis-1/2 md:h-[250px] md:basis-1/3"
+                      >
+                        <Link to={`/blog/${slug}`}>
+                          <div className="relative h-2/3 w-full rounded-xl rounded-b-none">
+                            <img
+                              src={url}
+                              alt={title}
+                              className="absolute h-full w-full rounded-xl rounded-b-none object-cover object-center"
+                            />
+                          </div>
+                          <div className="flex h-1/3 flex-col justify-center rounded-xl rounded-t-none px-4">
+                            <h3 className="text-md font-semibold">{title}</h3>
+                            <p className="text-sm opacity-80">
+                              Data utworzenia:{" "}
+                              <span className="font-semibold">
+                                {new Date(createdAt).toLocaleDateString(
+                                  "pl-PL",
+                                  {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "2-digit",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  },
+                                )}
+                              </span>
+                            </p>
+                          </div>
+                        </Link>
+                      </CarouselItem>
+                    ),
+                  )}
+                ;
+              </CarouselContent>
+            </Carousel>
+          ) : (
+            <h3 className="md:text-lg">Aktualnie brak postów</h3>
+          )}
+        </div>
       </Container>
     </article>
   );

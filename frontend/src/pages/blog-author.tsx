@@ -68,9 +68,9 @@ const Content = () => {
 
   return (
     <section className="lg:py-6">
-      <Container className="flex flex-col justify-center lg:space-y-8">
+      <Container className="flex flex-col justify-center space-y-8">
         <div className="mx-auto text-center">
-          <div className="relative mb-4 aspect-square h-64 w-64 rounded-full">
+          <div className="relative mb-4 aspect-square h-56 w-56 rounded-full lg:h-64 lg:w-64">
             <img
               src={posts[0]?.author.image.url}
               alt={posts[0]?.author.name}
@@ -80,7 +80,9 @@ const Content = () => {
           <h2 className="font-bold">{posts[0]?.author.name}</h2>
           <h3>Liczba postów: {posts.length}</h3>
         </div>
-        <p className="leading-8">{posts[0]?.author.description}</p>
+        <p className="text-sm leading-7 lg:text-base lg:leading-8">
+          {posts[0]?.author.description}
+        </p>
         <Posts posts={posts} />
       </Container>
     </section>
